@@ -14,8 +14,9 @@
      - Acesse o repositório oficial ou site do Anything LLM e baixe a versão mais recente.
      ![Anything LLM Baixado](image-3.png)
    - **Baixar Ollama**:
+    ![SITE_OLLAMA](image-4.png)
      - Entre no site do Ollama ou no repositório GitHub e faça o download da ferramenta.
-     ![Ollama_Segundo_Plano](image-2.png)
+     
 
 ## 3. Baixar Modelos
    - Após baixar as ferramentas, baixe os modelos LLM que deseja utilizar.
