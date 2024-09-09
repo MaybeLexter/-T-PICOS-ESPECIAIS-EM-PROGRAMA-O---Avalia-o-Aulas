@@ -17,4 +17,4 @@ Baixar Modelos e salvar na pasta
 C:\Users\<SEU_USUARIO>\.cache\lm-studio\models
 ```
 
-Conhecer os detalhes dos modelos.
+Conhecer os detalhes dos modelos.,0
