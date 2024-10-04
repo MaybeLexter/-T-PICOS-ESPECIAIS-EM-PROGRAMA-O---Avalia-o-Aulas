@@ -1,0 +1,245 @@
+app:
+  description: ''
+  icon: rolling_on_the_floor_laughing
+  icon_background: '#FFE4E8'
+  mode: advanced-chat
+  name: Renda+Flow
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1728005606791-source-llm-target
+      source: '1728005606791'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: llm-source-1728006441497-target
+      source: llm
+      sourceHandle: source
+      target: '1728006441497'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: answer
+      id: 1728006441497-source-answer-target
+      source: '1728006441497'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Iniciar
+        type: start
+        variables: []
+      height: 53
+      id: '1728005606791'
+      position:
+        x: 15.75323067015404
+        y: 267.8970506349119
+      positionAbsolute:
+        x: 15.75323067015404
+        y: 267.8970506349119
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gemini-pro
+          provider: google
+        prompt_template:
+        - edition_type: jinja2
+          id: 78e13d32-15a9-40ea-a20e-37fe3f551ab9
+          jinja2_text: "<contexto>\r\nSeu nome é Clara, você trabalha na Concecionaria\
+            \ Auto Carros.\r\nNo inicio da conversa, envie sempre a logo da loja,\
+            \ no formato markdown:\r\n\r\n![\"Auto Carros\"](https://www.veiculoaqui.com.br/fotos_lojas/loja20231122131932721_535130177.jpeg)\r\
+            \nVocê deve orientar o usuário a encontrar o carro ideal.\r\n</contexto>\r\
+            \n\r\n<etapas>\r\n1. Solicite o nome do usuário\r\n2. Pergunte para que\
+            \ tipo de uso será o carro\r\n3. Faça poucas perguntas para identificar\
+            \ o carro ideal para o cliente\r\n4. Sugira um carro ou uma lista de carros\
+            \ com base no perfil dele\r\n5. Assim que o usuário escolher o carro,\
+            \ agradeça e diga que irá encaminhá-lo para o Gerente Caetano, que irá\
+            \ agendar um teste Drive.\r\n</etapas> \r\n\r\n<response_format>\r\nResponda\
+            \ no formato JSON com os seguintes campos:\r\nresponse - Sua resposta\
+            \ para o usuário\r\ncarro - o carro que o usuário escolheu, se não souber\
+            \ marque \"\"\r\nnome - o nome do usuário, se não souber, marque \"\"\r\
+            \netapa - o número da etapa em que você se encontra com descrito nas tags\
+            \ <etapas>\r\n\r\n</response_format>\r\n\r\n<json_schema>\r\n{\r\n  \"\
+            name\": \"carro_escolha\",\r\n  \"schema\": {\r\n    \"type\": \"object\"\
+            ,\r\n    \"properties\": {\r\n      \"nome\": {\r\n        \"type\": \"\
+            string\",\r\n        \"description\": \"o nome da pessoa\"\r\n      },\r\
+            \n      \"carro\": {\r\n        \"type\": \"string\",\r\n        \"description\"\
+            : \"o carro que o usuário escolheu, se não souber marque \\\"\\\"\"\r\n\
+            \      },\r\n      \"response\": {\r\n        \"type\": \"string\",\r\n\
+            \        \"description\": \"Sua resposta para o usuário\"\r\n      },\r\
+            \n      \"etapa\": {\r\n        \"type\": \"integer\",\r\n        \"description\"\
+            : \"o número da etapa em que você se encontra com descrito nas tags\"\r\
+            \n      }\r\n    }\r\n  }\r\n}\r\n</json_schema>"
+          role: system
+          text: "<contexto>\nSeu nome é Clara, você trabalha na Concecionaria Auto\
+            \ Carros.\nNo inicio da conversa, envie sempre a logo da loja, no formato\
+            \ markdown:\n\n![\"Auto Carros\"](https://www.veiculoaqui.com.br/fotos_lojas/loja20231122131932721_535130177.jpeg)\n\
+            \nVocê deve orientar o usuário a encontrar o carro ideal.\n\n</contexto>\n\
+            \n\n\n<etapas>\n\n1. Solicite o nome do usuário\n\n2. Pergunte para que\
+            \ tipo de uso será o carro\n\n3. Faça poucas perguntas para identificar\
+            \ o carro ideal para o cliente\n\n4. Sugira um carro ou uma lista de carros\
+            \ com base no perfil dele\n\n5. Assim que o usuário escolher o carro,\
+            \ agradeça e diga que irá encaminhá-lo para o Gerente Caetano, que irá\
+            \ agendar um teste Drive.\n\n</etapas> \n\n\n\n<response_format>\n\nResponda\
+            \ no formato JSON com os seguintes campos:\n\nresponse - Sua resposta\
+            \ para o usuário\n\ncarro - o carro que o usuário escolheu, se não souber\
+            \ marque \"\"\n\nnome - o nome do usuário, se não souber, marque \"\"\n\
+            \netapa - o número da etapa em que você se encontra com descrito nas tags\
+            \ <etapas>\n\n\n\n</response_format>\n\n<json_schema>\n{\n\n  \"name\"\
+            : \"carro_escolha\",\n\n  \"schema\": {\n\n    \"type\": \"object\",\n\
+            \n    \"properties\": {\n\n      \"nome\": {\n\n        \"type\": \"string\"\
+            ,\n\n        \"description\": \"o nome da pessoa\"\n\n      },\n\n   \
+            \   \"carro\": {\n\n        \"type\": \"string\",\n\n        \"description\"\
+            : \"o carro que o usuário escolheu, se não souber marque \\\"\\\"\"\n\n\
+            \      },\n\n      \"response\": {\n\n        \"type\": \"string\",\n\n\
+            \        \"description\": \"Sua resposta para o usuário\"\n\n      },\n\
+            \n      \"etapa\": {\n\n        \"type\": \"integer\",\n\n        \"description\"\
+            : \"o número da etapa em que você se encontra com descrito nas tags\"\n\
+            \n      }\n\n    }\n\n  }\n\n}\n</json_schema>"
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 97
+      id: llm
+      position:
+        x: 367.46404500881056
+        y: 194.24831506167385
+      positionAbsolute:
+        x: 367.46404500881056
+        y: 194.24831506167385
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        answer: '{{#1728006441497.response#}}'
+        desc: ''
+        selected: false
+        title: Resposta
+        type: answer
+        variables: []
+      height: 105
+      id: answer
+      position:
+        x: 965.19297604956
+        y: 296.1029493650882
+      positionAbsolute:
+        x: 965.19297604956
+        y: 296.1029493650882
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "def main(data: str) -> dict:\n    jsondata = json.loads(data)\n\n \
+          \   return {\n        \"response\" : jsondata[\"response\"],\n        \"\
+          etapa\": jsondata[\"etapa\"],\n        \"nome\": jsondata[\"nome\"],\n \
+          \       \"carro\":jsondata[\"carro\"],\n    }"
+        code_language: python3
+        desc: ''
+        outputs:
+          carro:
+            children: null
+            type: string
+          etapa:
+            children: null
+            type: string
+          nome:
+            children: null
+            type: string
+          response:
+            children: null
+            type: string
+        selected: true
+        title: Código
+        type: code
+        variables:
+        - value_selector:
+          - llm
+          - text
+          variable: data
+      height: 53
+      id: '1728006441497'
+      position:
+        x: 670.4640450088106
+        y: 194.24831506167385
+      positionAbsolute:
+        x: 670.4640450088106
+        y: 194.24831506167385
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: -45.40324726144638
+      y: 206.12628740813398
+      zoom: 0.6381643844144765
